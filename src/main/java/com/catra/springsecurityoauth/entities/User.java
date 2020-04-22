@@ -1,5 +1,6 @@
 package com.catra.springsecurityoauth.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +21,7 @@ public class User implements Serializable {
    @Column(unique = true, length = 25)
    private String username;
 
-   @Column(length = 20)
+   @Column(length = 60)
    private String password;
 
    private Boolean enabled;
@@ -47,6 +48,7 @@ public class User implements Serializable {
          })
       }
    )
+   @JsonIgnore
    private List<Role> roles;
 
    private static final long serialVersionUID = 1L;
