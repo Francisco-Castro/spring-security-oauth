@@ -20,11 +20,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
    private final BCryptPasswordEncoder passwordEncoder;
    private final AuthenticationManager authenticationManager;
+   private final InfoAdditionalToken infoAdditionalToken;
 
-
-   public AuthorizationServerConfig(BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
+   public AuthorizationServerConfig(BCryptPasswordEncoder passwordEncoder, AuthenticationManager authenticationManager, InfoAdditionalToken infoAdditionalToken) {
       this.passwordEncoder = passwordEncoder;
       this.authenticationManager = authenticationManager;
+      this.infoAdditionalToken = infoAdditionalToken;
    }
 
    @Override
@@ -55,10 +56,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
    @Override
    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
-//      TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-//      tokenEnhancerChain.setTokenEnhancers(Arrays.asList(infoAdicionalToken));
+      /** Joining default token info with our customize info */
+      TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+      tokenEnhancerChain.setTokenEnhancers(Arrays.asList(infoAdditionalToken, accessTokenConverter()));
+
       endpoints.authenticationManager(authenticationManager)
-         .accessTokenConverter(accessTokenConverter());
+         .accessTokenConverter(accessTokenConverter())
+         .tokenEnhancer(tokenEnhancerChain);
    }
 
    /**

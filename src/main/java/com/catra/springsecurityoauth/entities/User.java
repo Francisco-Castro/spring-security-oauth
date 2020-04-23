@@ -48,7 +48,6 @@ public class User implements Serializable {
          })
       }
    )
-   @JsonIgnore
    private List<Role> roles;
 
    private static final long serialVersionUID = 1L;

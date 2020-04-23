@@ -27,7 +27,6 @@ public class Role implements Serializable {
     * order way around.
     * */
    @ManyToMany(mappedBy = "roles")
-   @JsonIgnore
    private List<User> users;
 
    private static final long serialVersionUID = 1L;

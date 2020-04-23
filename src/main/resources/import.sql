@@ -4,9 +4,9 @@
 -- INSERT INTO clients (name, email, photo, create_at) VALUES ('Emilianux 2', 'e2@e.com', null, '2019-01-01');
 -- INSERT INTO clients (name, email, photo, create_at) VALUES ('Emilianux 3', 'e3@e.com', null, '2019-01-01');
 
-INSERT INTO clients (name) VALUES ('Emi');
-INSERT INTO clients (name) VALUES ('Mr. John');
-INSERT INTO clients (name) VALUES ('Linus');
+INSERT INTO clients (name, last_name) VALUES ('Emi', 'Castro');
+INSERT INTO clients (name, last_name) VALUES ('Mr. John', 'Smith');
+INSERT INTO clients (name, last_name) VALUES ('Linus', 'Osx');
 
 /* Some users and their roles */
 
